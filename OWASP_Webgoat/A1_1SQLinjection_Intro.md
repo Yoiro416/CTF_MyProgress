@@ -70,7 +70,8 @@ SELECT * FROM employees WHERE last_name = 'foo' AND auth_tan = 'bar' OR '1' = '1
 
 Employee Nameフィールドには**foo**を
 Authentication TANフィールドには**bar'; UPDATE employees SET salary = 10000000  WHERE first_name = 'John' and last_name = 'Smith**
-と入力します。一度エディタでくみ上げてから入力したほうがいいですね(1敗)。これによって以下のように2つQueryが実行されると考えられます
+と入力します。一度エディタでくみ上げてから入力したほうがいいですね(1敗)。
+これによって以下のように2つQueryが実行されると考えられます
 ```SQL
 SELECT * FROM employees WHERE last_name = 'foo' AND auth_tan = 'bar'; 
 UPDATE employees SET salary = 10000000  WHERE first_name = 'John' and last_name = 'Smith
