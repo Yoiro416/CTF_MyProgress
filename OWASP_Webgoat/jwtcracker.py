@@ -1,7 +1,6 @@
 import jwt
 
-# 一度ページにアクセスしtokenを取得してここに入力
-# できれば自動的に取得できるようにしたい
+# 提示されたTOKENをここに
 token = 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJXZWJHb2F0IFRva2VuIEJ1aWxkZXIiLCJhdWQiOiJ3ZWJnb2F0Lm9yZyIsImlhdCI6MTY3ODgwMTMyOSwiZXhwIjoxNjc4ODAxMzg5LCJzdWIiOiJ0b21Ad2ViZ29hdC5vcmciLCJ1c2VybmFtZSI6IlRvbSIsIkVtYWlsIjoidG9tQHdlYmdvYXQub3JnIiwiUm9sZSI6WyJNYW5hZ2VyIiwiUHJvamVjdCBBZG1pbmlzdHJhdG9yIl19.F10XcOBnE3pq9BNpljTLhiEg_6MVSXAaM4VRtwSKTuU'
 
 # https://github.com/first20hours/google-10000-english/blob/master/20k.txt
