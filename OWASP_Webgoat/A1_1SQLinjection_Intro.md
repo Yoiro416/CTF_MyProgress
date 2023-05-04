@@ -70,11 +70,22 @@ SELECT * FROM employees WHERE last_name = 'foo' AND auth_tan = 'bar' OR '1' = '1
 
 Employee Nameフィールドには**foo**を
 Authentication TANフィールドには**bar'; UPDATE employees SET salary = 10000000  WHERE first_name = 'John' and last_name = 'Smith**
-と入力します。一度エディタでくみ上げてから入力したほうがいいですね(1敗)。
-これによって以下のように2つQueryが実行されると考えられます
+と入力します。一度エディタで組み上げてから入力したほうがいいですね(1敗)。
+これによって以下の2つQueryが実行されると考えられます
 ```SQL
 SELECT * FROM employees WHERE last_name = 'foo' AND auth_tan = 'bar'; 
 UPDATE employees SET salary = 10000000  WHERE first_name = 'John' and last_name = 'Smith
 ```
-上のSELECT分はこの問題とあまり関係がなく、問題は下です。フィールド内に;を追加したことによりQueryが一度終了し、そのあとから新しいQueryを自分で組み立て、実行してsalaryを書き換えています。
-ダイナミック昇給の成功です。
+上のSELECT文はこの問題とあまり関係がなく、問題は下です。
+フィールド内に;を追加したことによりQueryが一度終了し、そのあとから新しいQueryを自分で組み立て、実行してsalaryを書き換えています。(Query chaining)
+ダイナミック昇給の成功です。良かったですね。
+
+## 13 Compromising Availability
+給料を書き換えたことがバレるとまずいのでログを格納するテーブルを完全に削除することにしたようです。ページにはアクションを検索する窓があるのでそこに対してInjectionを行いましょう
+アクションの検索では検索する単語が含まれているかどうかの判断にLIKE文が使用されていることが予想でき、Hintには"SELECT * FROM access_log WHERE action LIKE '%" + action + "%'"とあります。actionの中に入力した文字列が入るので、後ろの%を読み飛ばす必要があり、この場合コメントアウト"--"が使えます
+**foo';DROP TABLE access_log;--**と検索フィールドに入力することで
+```SQL 
+SELECT * FROM access_log WHERE action LIKE '%foo';DROP TABLE access_log;--%
+```
+という文が組み立てられ、Query chainingによってTABLEをDROPすることができます。
+ちなみにDROPすると対象のオブジェクトが完全に削除され、ロールバック付加できず表構造も残りません
