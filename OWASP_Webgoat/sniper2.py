@@ -3,9 +3,6 @@ import requests
 import urllib
 
 ###
-#TODO sniper_2.pyの改良を行っている
-#xxx.xxx.xxx.xxxのピリオドの部分も判定できるようにする
-#
 #SQL injection (mitigation) lesson 12
 #F12のnetworkタブからgetメソッドの通信を閲覧、編集して再送信を行い、URLパラメータにcase when (substring((select ip from servers where hostname='webgoat-prd'),1,1)=1) then id else hostname endで
 #Blind SQLとORDERの特性をを応用した攻撃が通る
