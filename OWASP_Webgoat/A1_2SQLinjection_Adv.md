@@ -36,7 +36,7 @@ Username欄に name' AND 1=2;-- と入力すると、User name' AND 1=2;-- creat
 ここまで情報が集まれば、POSTを利用して通信をしていることがわかっているため、どのようなpayloadが作成されているかを調べながらプログラミングしていきます。以降のプログラムに関する詳細な説明はsniper.py内部のコメントアウトを参照ください。  
 取得したパスワードを使い、TomとしてLOGINすればクリアです。
 
-## 6知識クイズ
+## 6 知識クイズ
 私にとっては英語力クイズでもあります。
 ### 1. What is the difference between a prepared statement and a statement?
 1. Prepared statementは事前にコンパイルを行っているため、Statementよりも高速な傾向があります。**Ans.4**
