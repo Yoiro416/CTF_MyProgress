@@ -2,10 +2,11 @@
 
 ## Task1
 
--p[min port num.]-[max port num]オプションを指定し広範囲のポート(Well-Known Port以外)をスキャンしなければ発見できない(オプションなしだとNot shown)ので、`nmap -p- -T5 [Target IP addr.]`で高速化したうえで全ポートを調査。T5オプションについては次の通り:[nmapのオプション-タイミングとパフォーマンス](https://nmap.org/man/ja/man-performance.html)
+-p[min port num.]-[max port num]オプションを指定し広範囲のポート(Well-Known Port以外)をスキャンしなければ発見できない(オプションなしだとNot shown)ので、`nmap -p- -T5 [Target IP addr.]`で高速化したうえで全ポートを調査した。T5オプションについては次の通り:[nmapのオプション-タイミングとパフォーマンス](https://nmap.org/man/ja/man-performance.html)
 
 ## Task3
 
+Ans. redis
 In-memory databaseという、メモリ上で動作するデータベース。揮発性のあるmemory上で動作するためデータを永続的に保持する機能が実装されている  
 IoTなどミリ秒単位の応答が求められる場面で広く利用されている。StackOverflowで人気のデータベース  
 

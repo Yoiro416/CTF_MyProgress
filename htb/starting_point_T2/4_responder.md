@@ -71,11 +71,12 @@ ans. badminton
 
 # Task10
 
-範囲披露目でNmapすればよし
+範囲広めでNmapすればよし
 
 ans. 5985
 
 # Task11
 
 `evil-winrm`コマンドでWindows Remote Machineサービスのセッションを構築できる。  
-`evil-winrm -i [target_ipaddr] -u administrator -p badminton`でセッションを構築、その後内部を動き回り`C:\Users\mike\Desktop\flag.txt`を発見、これをcatして回答すれば完了
+`evil-winrm -i [target_ipaddr] -u administrator -p badminton`でセッションを構築、その後内部を動き回り`C:\Users\mike\Desktop\flag.txt`を発見、これをcatして回答すれば完了  
+findコマンドを使用してflagというキーワードによって発見する方法もある  
