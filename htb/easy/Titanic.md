@@ -88,4 +88,4 @@ name=test; cat /etc/passwd
 
 ここで`dev.titanic.htb`というサブドメインが発見できた。`/etc/hosts`に同じIPをセットしてアクセスできるようにすると、Giteaのサービスが動いていることが確認できた。  
 
-Giteaから`flask-app`リポジトリを覗いてみると`app.py`がある。覗いてみるとなんか`/download`がなんか脆弱性がありそう
+Giteaから`flask-app`リポジトリを覗いてみると`app.py`がある。覗いてみると`/download`にエンドポイント?がある
